@@ -11,11 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-Route::resource('Catalog','CatalogController');
+Route::get('/', 'HomeController@getHome');
+Route::get('/catalog','CatalogController@getIndex');
+Route::get('/catalog/show/{id}','CatalogController@getShow');
+Route::get('/catalog/create','CatalogController@getCreate');
+Route::get('/catalog/edit/{id}','CatalogController@getEdit');
+// Route::resource('Catalog','CatalogController');

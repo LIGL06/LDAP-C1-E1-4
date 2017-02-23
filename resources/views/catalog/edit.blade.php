@@ -9,6 +9,7 @@
 
                 <div class="panel-body">
                   Edit.blade.php
+                  <h1>Edit ID: <b>{{$catalog}}</b></h1>
                 </div>
             </div>
         </div>

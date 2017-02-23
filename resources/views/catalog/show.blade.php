@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                   Show.Blade.php
-                  
+                  <h1>Show ID: <b>{{$catalog}}</b></h1>
                 </div>
             </div>
         </div>
