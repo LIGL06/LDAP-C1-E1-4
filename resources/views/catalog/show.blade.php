@@ -8,8 +8,24 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                  Show.Blade.php
-                  <h1>Show ID: <b>{{$catalog}}</b></h1>
+                  <div class="container">
+                    <div class="row">
+                      @foreach($catalog as $key => $value)
+                      <div class="col-md-4">
+                        <img src="" alt="">
+                      </div>
+                      <div class="col-md-8">
+                        <h5>{{$value}}</h5>
+                      </div>
+                      @endforeach
+                    </div>
+                    <div class="row">
+                        <button type="button" class="btn btn-danger">Devolver película</button>
+                        <button type="button" class="btn btn-warning">Editar película</button>
+                        <button type="button" class="btn btn-default">Volver al listado</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
