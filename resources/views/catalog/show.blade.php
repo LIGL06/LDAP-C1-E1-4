@@ -28,8 +28,16 @@
                       </div>
                     </div>
                     <div class="row">
-                        <button type="button" class="btn btn-danger">Devolver película</button>
-                        <button type="button" class="btn btn-warning">Editar película</button>
+                        <form action="{{action('CatalogController@putReturn', $pelicula->id)}}" method="post" style="display:inline">
+                          {{ method_field('PUT') }}
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-danger" style="display:inline">Devolver película</button>
+                        </form>
+                        <form action="{{action('CatalogController@putReturn', $pelicula->id)}}" method="post" style="display:inline">
+                          {{ method_field('PUT') }}
+                          {{ csrf_field() }}
+                          <button type="submit" class="btn btn-danger" style="display:inline">Editar película</button>
+                        </form>
                         <button type="button" class="btn btn-default">Volver al listado</button>
                       </div>
                     </div>
