@@ -43,7 +43,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'ldap-a2'),
+            'database' => env('DB_DATABASE', 'ldap'),
             'username' => env('DB_USERNAME', 'ldap'),
             'password' => env('DB_PASSWORD', 'ldap'),
             'charset' => 'utf8mb4',

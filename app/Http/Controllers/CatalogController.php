@@ -74,7 +74,7 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -86,5 +86,13 @@ class CatalogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function putRent(Request $request, $id){
+      $movie = Movie::find($id);
+      $movie->rented= !$movie->rented;
+      $movie->save();
+      $request->session()->flash('message', $movie->title.' ha sido actualizada');
+      return redirect()->action('CatalogController@getIndex');
     }
 }
