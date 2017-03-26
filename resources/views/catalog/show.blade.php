@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading">{{$catalog->title}}</div>
+                <div class="panel-heading">Estás viendo información acerca de <b>{{$catalog->title}}</b></div>
                 <div class="panel-body">
                     <div class="row">
                       <div class="col-xs-4 col-md-4">
@@ -32,12 +32,10 @@
                               @if($catalog->rented)
                                 <button type="submit" class="btn btn-danger" style="display:inline">Devolver película</button>
                               @else
-                                <button type="submit" class="btn btn-danger" style="display:inline">Rentar película</button>
+                                <button type="submit" class="btn btn-success" style="display:inline">Rentar película</button>
                               @endif
                             </form>
-                            <form action="{{action('CatalogController@getEdit', $catalog->id)}}" method="post" style="display:inline">
-                              {{ method_field('PUT') }}
-                              {{ csrf_field() }}
+                            <form action="{{action('CatalogController@getEdit', $catalog->id)}}" method="get" style="display:inline">
                               <button type="submit" class="btn btn-warning" style="display:inline">Editar película</button>
                             </form>
                             <form action="{{action('CatalogController@getIndex')}}" method="get" style="display:inline">

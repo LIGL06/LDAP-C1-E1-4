@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([

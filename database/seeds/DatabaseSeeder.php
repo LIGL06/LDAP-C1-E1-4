@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 use App\Movie;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,7 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         self::seedCatalog();
-        self::seedUsers();
+        Model::unguard();
+        User::create([
+          'name' => 'Administrador - TECFLIX',
+          'email' => 'admin@tecflix.mx',
+          'password' => bcrypt('Password00'),
+          'type' => true
+        ]);
+        Model::reguard();
         $this->command->info('¡Tabla inicializada con datos de peliculas!');
         $this->command->info('¡Tabla usuarios con datos de peliculas!');
         $this->call(CatalogTableSeeder::class);

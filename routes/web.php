@@ -14,26 +14,17 @@
 Auth::routes();
 Route::get('/', 'HomeController@index');
 
-// Route::get('/login','LoginController@showLoginForm');
-// Route::post('/login','LoginController@login');
-// Route::post('/logout','LoginController@logout');
-//
-// Route::get('/register','RegisterController@showRegisterForm');
-// Route::post('/register','RegisterController@register');
-//
-// Route::post('/password/email','ForgotPasswordController@sendResetLinkEmail');
-// Route::get('/password/reset','ForgotPasswordController@showLinkRequestForm');
-//
-// Route::post('/password/email','ResetPasswordController@reset');
-// Route::post('/password/email','ResetPasswordController@showResetForm');
-
 Route::group(['middleware'=>'auth'], function(){
   Route::get('/catalog','CatalogController@getIndex');
   Route::get('/catalog/show/{id}','CatalogController@getShow');
-  Route::get('/catalog/create','CatalogController@getCreate');
-  Route::get('/catalog/edit/{id}','CatalogController@getEdit');
   Route::put('/catalog/rent/{id}','CatalogController@putRent');
   Route::put('/catalog/return/{id}','CatalogController@putReturn');
+});
+
+Route::group(['middleware'=>'AuthenticateAdmin'], function(){
+  Route::get('/catalog/create','CatalogController@getCreate');
+  Route::get('/catalog/edit/{id}','CatalogController@getEdit');
+  Route::put('/catalog/edit/{id}','CatalogController@update');
   Route::put('/catalog/delete/{id}','CatalogController@deleteMovie');
 });
 

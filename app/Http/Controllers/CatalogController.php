@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use App\Catalog;
 use App\Movie;
 
@@ -61,8 +63,9 @@ class CatalogController extends Controller
      */
     public function getEdit($id)
     {
-        $catalog = Movie::find($id);
-        return view('catalog.edit')->with('catalog',$catalog);
+        $movie = Movie::find($id);
+        // return $movie;
+        return view('catalog.edit')->with('movie',$movie);
     }
 
     /**
@@ -74,7 +77,28 @@ class CatalogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $id;
+        $validator = Validator::make($request->all(),[
+          'title' => 'required',
+          'year' => 'required|numeric',
+          'director' => 'required',
+          'synopsis' => 'required',
+          'poster' => 'required',
+          'rented' => 'required'
+        ]);
+        if ($validator->fails()){
+            return redirect()->action('CatalogController@getEdit',$id)->withErrors($validator)->withInput();
+          } else {
+            $movie = Movie::find($id);
+            $movie->title = Input::get('title');
+            $movie->year = Input::get('year');
+            $movie->director = Input::get('director');
+            $movie->synopsis = Input::get('synopsis');
+            $movie->poster = Input::get('poster');
+            $movie->rented = Input::get('rented');
+            $movie->save();
+            $request->session()->flash('message', $movie->title.' ha sido actualizada');
+            return redirect()->action('CatalogController@getIndex');
+          }
     }
 
     /**

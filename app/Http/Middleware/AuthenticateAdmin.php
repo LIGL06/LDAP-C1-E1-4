@@ -4,16 +4,14 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\RedirectResponse;
 
-class RedirectIfAuthenticated
+class AuthenticateAdmin
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
     protected $auth;
@@ -23,10 +21,10 @@ class RedirectIfAuthenticated
   		$this->auth = $auth;
   	}
 
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
-            return new RedirectReponse(url('/home'));
+        if ($this->auth->user()->type()!=true) {
+          return redirect()->back();
         }
         return $next($request);
     }
