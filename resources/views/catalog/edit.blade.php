@@ -9,7 +9,7 @@
                 <div class="panel-body">
                     <div class="row">
                       <div class="col-xs-4 col-md-4">
-                        <img src="{{$movie->poster}}" class="resposive-img">
+                        <img src="{{$movie->poster}}" class="img-responsive">
                       </div>
                       <div class="col-xs-8 col-md-8">
                         {!! Html::ul($errors->all()) !!}

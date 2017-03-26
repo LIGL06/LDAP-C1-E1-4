@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
+use Auth;
 
 class AuthenticateAdmin
 {
@@ -14,18 +14,12 @@ class AuthenticateAdmin
      * @param  \Closure  $next
      * @return mixed
      */
-    protected $auth;
-
-    public function __construct(Guard $auth)
-  	{
-  		$this->auth = $auth;
-  	}
 
     public function handle($request, Closure $next)
     {
-        if ($this->auth->user()->type()!=true) {
-          return redirect()->back();
+        if (Auth::check() && Auth::user()->isAdmin() ) {
+          return $next($request);
         }
-        return $next($request);
+        return redirect()->back();
     }
 }

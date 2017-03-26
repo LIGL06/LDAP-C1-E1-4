@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->check()) {
-            return new RedirectReponse(url('/home'));
+            return redirect()->back();
         }
         return $next($request);
     }

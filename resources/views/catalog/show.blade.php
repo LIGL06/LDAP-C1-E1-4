@@ -26,18 +26,27 @@
                         </h5>
                         <div class="row ">
                           <br>
-                            <form action="{{action('CatalogController@putRent', $catalog->id)}}" method="post" style="display:inline">
-                              {{ method_field('PUT') }}
-                              {{ csrf_field() }}
-                              @if($catalog->rented)
-                                <button type="submit" class="btn btn-danger" style="display:inline">Devolver película</button>
+                              @if(Auth::user()->type)
+                                <form action="{{action('CatalogController@getEdit', $catalog->id)}}" method="get" style="display:inline">
+                                  {{ method_field('GET') }}
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn btn-warning" style="display:inline">Editar película</button>
+                                </form>
                               @else
-                                <button type="submit" class="btn btn-success" style="display:inline">Rentar película</button>
+                                @if($catalog->rented)
+                                <form action="{{action('CatalogController@putRent', $catalog->id)}}" method="post" style="display:inline">
+                                  {{ method_field('PUT') }}
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn btn-danger" style="display:inline">Devolver película</button>
+                                </form>
+                                @else
+                                <form action="{{action('CatalogController@putRent', $catalog->id)}}" method="post" style="display:inline">
+                                  {{ method_field('PUT') }}
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn btn-success" style="display:inline">Rentar película</button>
+                                </form>
+                                @endif
                               @endif
-                            </form>
-                            <form action="{{action('CatalogController@getEdit', $catalog->id)}}" method="get" style="display:inline">
-                              <button type="submit" class="btn btn-warning" style="display:inline">Editar película</button>
-                            </form>
                             <form action="{{action('CatalogController@getIndex')}}" method="get" style="display:inline">
                               <button type="submit" class="btn btn-default" style="display:inline">Volver al listado</button>
                             </form>

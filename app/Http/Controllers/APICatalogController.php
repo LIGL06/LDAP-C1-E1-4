@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movie;
+use App\User;
 
 class APICatalogController extends Controller
 {
@@ -46,7 +47,7 @@ class APICatalogController extends Controller
      */
     public function show($id)
     {
-        //
+        return response()->json(Movie::find($id));
     }
 
     /**
@@ -88,5 +89,9 @@ class APICatalogController extends Controller
       $m->rented = true;
       $m->save();
       return response()->json( ['error' => false, 'msg' => 'La película se ha marcado como alquilada' ] );
+    }
+
+    public function users(Request $request){
+      return response()->json(User::all());
     }
 }
