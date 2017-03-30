@@ -15,7 +15,7 @@
                         <h3><b>{{$catalog->title}}</b></h3>
                         <h4><b>Año: </b>{{$catalog->year}}</h4>
                         <h5><b>Director: </b>{{$catalog->director}}</h5>
-                        <small><b>Resumen:</b>{{$catalog->synopsis}}</small>
+                        <small><b>Resumen: </b>{{$catalog->synopsis}}</small>
                         <br>
                         <h5><b>Estado:</b>
                           @if($catalog->rented)
@@ -31,6 +31,11 @@
                                   {{ method_field('GET') }}
                                   {{ csrf_field() }}
                                   <button type="submit" class="btn btn-warning" style="display:inline">Editar película</button>
+                                </form>
+                                <form action="{{action('CatalogController@deleteMovie',$catalog->id)}}" method="post" style="display:inline">
+                                  {{ method_field('PUT') }}
+                                  {{ csrf_field() }}
+                                  <button type="submit" class="btn btn-danger" style="display:inline">Eliminar película</button>
                                 </form>
                               @else
                                 @if($catalog->rented)

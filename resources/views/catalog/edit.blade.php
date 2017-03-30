@@ -39,8 +39,8 @@
                           <div class="form-group">
                             <label for="rented">Estado de la película</label>
                             <select class="form-control" name="rented">
-                              <option value="0">Rentada</option>
-                              <option value="1">Disponible</option>
+                              <option value="0">Disponible</option>
+                              <option value="1">Rentada</option>
                             </select>
                           </div>
                           <div class="row">

@@ -23,6 +23,7 @@ Route::group(['middleware'=>'auth'], function(){
 
 Route::group(['middleware'=>'admin'], function(){
   Route::get('/catalog/create','CatalogController@getCreate');
+  Route::post('/catalog/create','CatalogController@store');
   Route::get('/catalog/edit/{id}','CatalogController@getEdit');
   Route::put('/catalog/edit/{id}','CatalogController@update');
   Route::put('/catalog/delete/{id}','CatalogController@deleteMovie');

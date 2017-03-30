@@ -39,7 +39,28 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $validator = Validator::make($request->all(),[
+        'title' => 'required',
+        'year' => 'required|numeric',
+        'director' => 'required',
+        'synopsis' => 'required',
+        'poster' => 'required',
+        'rented' => 'required'
+      ]);
+      if ($validator->fails()){
+          return redirect()->action('CatalogController@getCreate')->withErrors($validator)->withInput();
+        } else {
+          $movie = new Movie;
+          $movie->title = Input::get('title');
+          $movie->year = Input::get('year');
+          $movie->director = Input::get('director');
+          $movie->synopsis = Input::get('synopsis');
+          $movie->poster = Input::get('poster');
+          $movie->rented = Input::get('rented');
+          $movie->save();
+          $request->session()->flash('message', $movie->title.' ha sido añadida');
+          return redirect()->action('CatalogController@getIndex');
+        }
     }
 
     /**
@@ -107,9 +128,12 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteMovie(Request $request, $id)
     {
-        //
+        $movie = Movie::find($id);
+        $movie->delete();
+        $request->session()->flash('message', $movie->title.' ha sido eliminada');
+        return redirect()->action('CatalogController@getIndex');
     }
 
     public function putRent(Request $request, $id){
