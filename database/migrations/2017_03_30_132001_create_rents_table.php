@@ -17,8 +17,10 @@ class CreateRentsTable extends Migration
     {
       Schema::create('rents', function (Blueprint $table) {
           $table->increments('id');
-          $table->number('movie');
-          $table->number('user');
+          $table->integer('movie_id')->unsigned();
+          $table->integer('user_id')->unsigned();
+          $table->foreign('movie_id')->references('id')->on('movies');
+          $table->foreign('user_id')->references('id')->on('users');
           $table->timestamps();
       });
     }

@@ -30,7 +30,8 @@ Route::group(['middleware'=>'admin'], function(){
 });
 
 Route::group(['middleware'=>'auth.basic'],function(){
-  Route::get('/api/v1/user','APICatalogController@users');
+  Route::get('/api/v1/users','APICatalogController@users');
+  Route::get('/api/v1/rents','APICatalogController@rents');
   Route::get('/api/v1/catalog','APICatalogController@index');
   Route::get('/api/v1/catalog/{id}','APICatalogController@show');
 });

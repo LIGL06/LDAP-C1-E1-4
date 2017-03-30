@@ -94,4 +94,8 @@ class APICatalogController extends Controller
     public function users(Request $request){
       return response()->json(User::all());
     }
+
+    public function rents(Request $request){
+      return response()->json(Rents::all());
+    }
 }
